@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowtopiaRender</title>
+</head>
+<body>
+    <center>
+        <img src="public/banner.png" alt="">
+        <h3><a href="https://github.com/FakeLeq/GrowtopiaRender/Player"><span style="background-color: #252525; padding: 10px;">View source in github</span></a></h3>
+    </center>
+    <br>
+    <h1>Start</h1>
+    <div style="background-color: #252525; padding: 15px;" class="start">
+        You need in-game assets like item sprites and items.dat<br>For auto getting check out <a href="#rttexconv">Get Assets Auto</a>
+    </div>
+    <br>
+    <h1>Features</h1>
+    <p><span style="color: #6be66b;">Working</span>, <span style="color: yellow;">New</span>, <span style="color: red;">Disabled</span></p>
+    <div style="background-color: #252525; padding: 15px;" class="update">
+        <div class="update_dsc">
+            <h3 style="color: yellow;" id="rttexconv">Get Assets Auto</h3>
+            <p><span style="color: aqua;">Description:</span> It getting .rttex and items.dat files from your Local Growtopia directory then converting .rttex files to .png</p>
+            <p style="color: #de3333;">Warn: Growtopia should be installed to auto get assets</p>
+            <p style="color: aqua;">Example Usage:</p>
+            <pre>
+                <code>
+const assets = new GetAssets().get(usedAssets);
+// usedAssets can be "flags", "items.dat", "game"
+                </code>
+            </pre>
+        </div>
+        <hr>
+        <div class="update_dsc">
+            <h3 style="color: yellow;">Item Scanner</h3>
+            <p><span style="color: aqua;">Description:</span> Get screenshot of player's view worn clothes dialog to get him/her items fast</p>
+
+            <p style="color: aqua;">Example Usage:</p>
+            <pre>
+                <code>
+const scan = new Scanner("image.png", ItemData);
+const get = await scan.getItems(); // returns BodyPart object
+                </code>
+            </pre>
+            <img style="width: 25%" src="public/scan.png" alt="">
+        </div>
+        <hr>
+        <div class="update_dsc">
+            <h3 style="color: red;">Pets</h3>
+            <p><span style="color: #6be66b;">Description:</span> Have bugs with that so disabled it. Mind to make a new</p>
+        </div>
+        <hr>
+        <div class="update_dsc">
+            <h3 style="color: yellow;">Flags</h3>
+            <p><span style="color: aqua;">Description:</span> You can add country or guild flags near to your name</p>
+            <p style="color: aqua;">Example Usage:</p>
+            <pre>
+                <code>
+await renderPlayer.setFlagPath("path_to_your_flag_assets/");
+await renderPlayer.renderFlag({ flagType: Types.flagTypes.GUILD, background: 658, foreground: 2, countryCode: "jp" })
+// flagType can be Types.flagTypes.COUNTRY too
+                </code>
+            </pre>
+            <img src="public/countryFlag.png" alt="">
+            <img src="public/guildFlag.png" alt="">
+        </div>
+        <hr>
+        <div class="update_dsc">
+            <h3 style="color: yellow;">Morphs</h3>
+            <p><span style="color: aqua;">Description:</span> You can morph like rayman, growformer<br>For auto morph items you don't have to do the example usage (auto morph like rayman)</p>
+            <div class="box" style="color: #d6d6d6; background-color: #353434; overflow-y:scroll; height:200px;">
+                Winter Bot<br>Growformer<br>Rayman<br>Goblin<br>Space Dog<br>Space Rabbit<br>Space Pig<br>Space Mouse<br>Space Badger
+            </div>
+            <p style="color: aqua;">Example Usage:</p>
+            <pre>
+                <code>
+options: { morph: {
+    growformer: true,
+    alien: false
+} }
+                </code>
+            </pre>  
+            <img src="public/morpGoblin.png" alt="">
+            <img src="public/morphRabbit.png" alt="">
+        </div>
+        <hr>
+        <div class="update_dsc">
+            <h3 style="color: #6be66b;">Custom Items</h3>
+            <p><span style="color: aqua;">Description:</span> We are supporting custom items, you can add your item to your character</p>
+            <p style="color: #de3333;">Warn: Sadly only accepting 32x32 items</p>
+            <p style="color: aqua;">Example Usage:</p>
+            <br>
+            citem.json
+            <pre>
+                <code> 
+{
+    "items": [
+        {
+            "item_id": -1, // go minus to prevent normal items
+            "item_name": "Purple Bubble Wings",
+            "item_texture": "../../your_image.png", // your custom item image location
+            "textureX": 0, //image x
+            "textureY": 0 // image y
+        }
+    ]
+}
+</code>
+</pre>
+index.js:
+<pre>
+<code> 
+const ItemData = await new ItemsDat(readFileSync("./Assets/items.dat"), readFileSync("citem.json")).parse();
+                                                                               // citem.json location
+                </code>
+            </pre>
+            <img src="https://github.com/FakeLeq/GrowtopiaRenderPlayer/blob/main/img/citem.png?raw=true" alt="">  
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Roboto,Sans-Serif !important;
+		font-size: 1.05em !important;
+		color: #fff;
+        background-color: #353434;
+	}
+
+    .update_dsc {
+        background-color: #1e1d1d;
+        padding: 5px;
+        border-radius: 3px;
+    }
+</style>
